@@ -1,71 +1,129 @@
 package com.skilldistillery.jets.app;
 
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.InputMismatchException;
+import java.util.List;
 import java.util.Scanner;
 
 import com.skilldistillery.jets.entities.AirField;
-//upon start up of the application, populate the Airfield with at least 5 different
-//types of jets. The jets will be read from a text fiel(Jets.txt)
-// each line in the file contains data for a single jet object
+import com.skilldistillery.jets.entities.Jet;
+import com.skilldistillery.jets.entities.JetImpl;
 
 public class JetsApplication {
-	private AirField airField;
 
-	public static void main(String[] args) {
-		Scanner input = new Scanner(System.in);
-		menu(input);
+	private Scanner kb;
+	private AirField airField;
+	private int menuChoice;
+
+	public static void main(String[] args) throws FileNotFoundException, IOException {
+		JetsApplication jetsApp = new JetsApplication();
+		jetsApp.kb = new Scanner(System.in);
+		jetsApp.run();
+		jetsApp.kb.close();
+
 	}
 
-	public static void menu(Scanner input) {
-		boolean goWhileTrue = true;
+	// Main app execution
+	private void run() throws FileNotFoundException, IOException {
+		initiateApplication();
 
 		do {
-			System.out.println("Press 1 to list the fleet of jets");
-			System.out.println("Press 2 to fly all jets");
-			System.out.println("Press 3 to view fastest jet");
-			System.out.println("Press 4 to view jet with longest range");
-			System.out.println("Press 5 to load all cargo jets");
-			System.out.println("Press 6 to DogFight");
-			System.out.println("Press 7 to add a jet to the fleet");
-			System.out.println("Press 8 to remove a jet from the fleet");
-			System.out.println("Press 9 to quit");
-			String menuChoice = input.next();
+			printMenuChoices();
+			menuSwitch();
+		} while (menuChoice != 9);
+	}
 
-			switch (menuChoice) {
-			case "1":
+	private void initiateApplication() throws FileNotFoundException, IOException {
+		List<Jet> jetsList = populateJetsFromFile();
+		airField = new AirField(jetsList);
+	}
 
-				break;
-			case "2":
+	private void menuSwitch() {
+		switch (menuChoice) {
+		case 1:
+			airField.listFleet();
+			break;
+		case 2:
+			airField.fly();
+			break;
+		case 3:
+			break;
+		case 4:
+			break;
+		case 5:
+			break;
+		case 6:
+			break;
+		case 7:
+			break;
+		case 8:
+			break;
+		case 9:
+			System.out.println("You've chosen to quit.");
+			break;
+		default:
+			System.out.println("Invalid option.");
+			System.out.println();
+			break;
 
-				break;
-			case "3":
+		}
+	}
 
-				break;
-			case "4":
+	private void printMenuChoices() {
+		System.out.println("1. List Fleets");
+		System.out.println("2. Fly All Jets");
+		System.out.println("3. View Fastest Jet");
+		System.out.println("4. View Jet With Longest Range");
+		System.out.println("5. Load All Cargo Jets");
+		System.out.println("6  Dog Fight!");
+		System.out.println("7. Add Jet To Fleet");
+		System.out.println("8. Remove Jet From Fleet");
+		System.out.println("9. Quit");
+		System.out.println("------------------------------");
+		System.out.println("Enter Choice: ");
 
-				break;
-			case "5":
+		try {
+			menuChoice = kb.nextInt();
+		} catch (InputMismatchException e) {
+		}
+		System.out.println();
 
-				break;
-			case "6":
+	}
 
-				break;
-			case "7":
+	private List<Jet> populateJetsFromFile() throws IOException {
 
-				break;
-			case "8":
+		boolean successfulFileIO = false;
+		String fileName = "";
+		// Declare outside the try/catch.
+		List<Jet> jets = new ArrayList<>();
+		do {
+			fileName = "JetList.txt";
 
-				break;
-			case "9":
-				goWhileTrue = false;
-				System.out.println("Come again, soon!");
-				break;
-
+			try {
+				FileReader fr = new FileReader(fileName);
+				BufferedReader br = new BufferedReader(fr);
+				String line;
+				while ((line = br.readLine()) != null) {
+					String[] jetRecord = line.split(", ");
+					String model = jetRecord[0];
+					int speed = Integer.parseInt(jetRecord[1]);
+					int range = Integer.parseInt(jetRecord[2]);
+					long price = Long.parseLong(jetRecord[3]);
+					JetImpl jet = new JetImpl(model, speed, range, price);
+					jets.add(jet);
+					System.out.println(jets);
+				}
+				br.close();
+			} catch (IOException e) {
+				System.err.println(e);
 			}
-
-		} while (goWhileTrue);
+		} while (successfulFileIO);
+		return jets;
 
 	}
 
 }
-//this is the only class for this package
-// DO not add additional class files.

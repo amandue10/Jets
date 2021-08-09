@@ -1,0 +1,7 @@
+C-T45 Fighting Warrior, 120, 3450, 123400
+F-T47 Night Hawk, 140, 5600, 120800
+C-T49 Eagle Scout, 160, 5650, 129000
+F-T53 Hopper, 180, 6080, 127000
+C-T58 Rotary, 200, 4690, 128000
+
+

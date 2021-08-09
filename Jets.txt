@@ -1,7 +1,0 @@
-T45, 12, 345, 1234.45
-jet type, speed, range, price
-
-On program startup, populate the AirField with at least 5 Jets of different types.
-
-These jets must be read from a text file, where each line in the file contains data for a single Jet object.
-

@@ -51,8 +51,10 @@ public class JetsApplication {
 			airField.fly();
 			break;
 		case 3:
+			airField.viewFastestJet();
 			break;
 		case 4:
+			airField.viewLongestRangeJet();
 			break;
 		case 5:
 			break;
@@ -115,11 +117,13 @@ public class JetsApplication {
 					long price = Long.parseLong(jetRecord[3]);
 					JetImpl jet = new JetImpl(model, speed, range, price);
 					jets.add(jet);
-					System.out.println(jets);
+					System.out.println(jet);
 				}
 				br.close();
+			} catch (FileNotFoundException e) {
+				e.printStackTrace();
 			} catch (IOException e) {
-				System.err.println(e);
+				System.err.println();
 			}
 		} while (successfulFileIO);
 		return jets;

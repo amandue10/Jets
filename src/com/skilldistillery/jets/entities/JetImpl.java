@@ -7,4 +7,12 @@ public class JetImpl extends Jet {
 		return;
 	}
 
+	public void fly() {
+		System.out.println("Model: " + getModel() + "\nSpeed: " + getSpeed() + ", Range: " + getRange()
+				+ ", Flight Time: " + (getRange() / getSpeed()) + " hours");
+		System.out.println();
+		System.out.println();
+
+	}
+
 }

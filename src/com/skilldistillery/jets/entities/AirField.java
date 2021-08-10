@@ -1,12 +1,20 @@
 package com.skilldistillery.jets.entities;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
 public class AirField {
 	private List<Jet> jets;
+	private String filePath;
 
 	public AirField() {
 		super();
+	}
+
+	public AirField(String path) {
+		jets = new ArrayList<>();
+		filePath = path;
 	}
 
 	public AirField(List<Jet> jets) {
@@ -59,32 +67,85 @@ public class AirField {
 
 	}
 
+	public List<Jet> getJets() {
+		return jets;
+	}
+
+	public void setJets(List<Jet> jets) {
+		this.jets = jets;
+	}
+
+	public void viewAllCargoJets() {
+		Jet cargoPlane = jets.get(0);
+		System.out.println("The Cargo Jets in the fleet are: \n");
+		for (Jet jet : jets) {
+			if (cargoPlane.getModel().contains("C")) {
+				cargoPlane = jet;
+				System.out.println(jet);
+				System.out.println();
+
+			}
+		}
+
+	}
+
+	public void dogFight() {
+
+		for (Jet jet : jets) {
+			jet.dogFight();
+			System.out.println();
+
+		}
+
+	}
+
+	public void addJetToFleet() {
+
+		JetImpl createdJet = new JetImpl(filePath, 0, 0, 0);
+
+		Scanner inputForJet = new Scanner(System.in);
+
+		System.out.println("Please add a model: ");
+		String model = inputForJet.next();
+		createdJet.setModel(model);
+
+		System.out.println("Please add a speed: ");
+		int speed = inputForJet.nextInt();
+		createdJet.setSpeed(speed);
+
+		System.out.println("Please add a range: ");
+		int range = inputForJet.nextInt();
+		createdJet.setRange(range);
+
+		System.out.println("Please add a price: ");
+		long price = inputForJet.nextLong();
+		createdJet.setPrice(price);
+
+		addJetToArray(createdJet);
+
+	}
+
+	private void addJetToArray(Jet createdJet) {
+		jets.add(createdJet);
+
+	}
+
+	public void removeJetFromFleet() {
+
+		System.out.println("Which jet would you like to remove from the fleet?\n");
+		listFleet();
+		System.out.println();
+		System.out.println("Enter the number corresponding to the jet "
+				+ "you would like to remove. Start counting the jets in the list " + "starting from 0");
+		System.out.print("Remove Jet in slot: ");
+		Scanner scanner = new Scanner(System.in);
+		int index = Integer.parseInt(scanner.next().toString());
+		jets.remove(index);
+		System.out.println();
+		System.out.println("Remaining jets: ");
+		listFleet();
+//		scanner.close();
+
+	}
+
 }
-
-//		String fileName = "Jets.txt";
-//		AirField pr = new AirField();
-//		List<Jet> jets = pr.readJet(fileName);
-//		System.out.println(jets);
-//		String outFileName = "Jets.tsv";
-//		pr.writeJets(outFileName, jets);
-
-//	private void writeJets(String outFileName, List<Jet> Jets) {
-//		try {
-//			FileWriter fw = new FileWriter(outFileName);
-//			PrintWriter pw = new PrintWriter(fw);
-//			for (Jet j : jets) {
-//				StringBuilder sb = new StringBuilder();
-//				sb.append(j.getModel());
-//				sb.append('\t');
-//				sb.append(j.getSpeed());
-//				sb.append('\t');
-//				sb.append(j.getRange());
-//				sb.append('\t');
-//				sb.append(j.getPrice());
-//				pw.println(sb);
-//			}
-//			pw.close();
-//		} catch (IOException e) {
-//			e.printStackTrace();
-//		}
-//	}

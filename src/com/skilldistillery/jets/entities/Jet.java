@@ -2,7 +2,7 @@ package com.skilldistillery.jets.entities;
 
 public abstract class Jet {
 
-	private String model;
+	protected String model;
 	private int speed; // in miles per hour
 	private int range;
 	private long price;
@@ -21,6 +21,11 @@ public abstract class Jet {
 		this.speed = speed;
 		this.range = range;
 		this.price = price;
+	}
+
+	public void dogFight() {
+		System.out.println(model + " is dogfighting!");
+
 	}
 
 	@Override

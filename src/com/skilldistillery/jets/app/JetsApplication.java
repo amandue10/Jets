@@ -57,12 +57,16 @@ public class JetsApplication {
 			airField.viewLongestRangeJet();
 			break;
 		case 5:
+			airField.viewAllCargoJets();
 			break;
 		case 6:
+			airField.dogFight();
 			break;
 		case 7:
+			airField.addJetToFleet();
 			break;
 		case 8:
+			airField.removeJetFromFleet();
 			break;
 		case 9:
 			System.out.println("You've chosen to quit.");
@@ -80,7 +84,7 @@ public class JetsApplication {
 		System.out.println("2. Fly All Jets");
 		System.out.println("3. View Fastest Jet");
 		System.out.println("4. View Jet With Longest Range");
-		System.out.println("5. Load All Cargo Jets");
+		System.out.println("5. View All Cargo Jets");
 		System.out.println("6  Dog Fight!");
 		System.out.println("7. Add Jet To Fleet");
 		System.out.println("8. Remove Jet From Fleet");

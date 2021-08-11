@@ -24,7 +24,7 @@ public class AirField {
 
 	public void listFleet() {
 		// List jets in Airfield
-		System.out.println("The fleet: ");
+		System.out.println("The fleet: \n");
 
 		for (int i = 0; i < jets.size(); i++) {
 			System.out.println(i + 1 + ". " + jets.get(i));
@@ -34,7 +34,7 @@ public class AirField {
 
 	// Fly Method
 	public void fly() {
-		System.out.println("Loading All Jets...\n");
+		System.out.println("Flying All Jets...\n");
 		for (Jet jet : jets) {
 			jet.fly();
 		}
@@ -77,24 +77,37 @@ public class AirField {
 
 	public void viewAllCargoJets() {
 		Jet cargoPlane = jets.get(0);
+		CargoPlane cargoPlane2 = new CargoPlane(null, 0, 0, 0);
+
 		System.out.println("The Cargo Jets in the fleet are: \n");
 		for (Jet jet : jets) {
-			if (cargoPlane.getModel().contains("C")) {
+			if (cargoPlane.getModel().contains("C.T")) {
 				cargoPlane = jet;
 				System.out.println(jet);
+//				System.out.println();
+				cargoPlane2.loadCargo();
 				System.out.println();
 
+			} else {
+				continue;
 			}
 		}
 
 	}
 
 	public void dogFight() {
+		Jet fighterJet = jets.get(0);
+		FighterJet fighterJet2 = new FighterJet(null, 0, 0, 0);
 
 		for (Jet jet : jets) {
-			jet.dogFight();
-			System.out.println();
-
+			if (fighterJet.getModel().contains("F")) {
+				fighterJet = jet;
+				System.out.println(jet);
+				fighterJet2.dogFight();
+				System.out.println();
+			} else {
+				continue;
+			}
 		}
 
 	}
@@ -144,7 +157,7 @@ public class AirField {
 		System.out.println();
 		System.out.println("Remaining jets: ");
 		listFleet();
-//		scanner.close();
+//		scanner.close(); causes bugs
 
 	}
 

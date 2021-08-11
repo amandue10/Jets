@@ -84,7 +84,7 @@ public class JetsApplication {
 		System.out.println("2. Fly All Jets");
 		System.out.println("3. View Fastest Jet");
 		System.out.println("4. View Jet With Longest Range");
-		System.out.println("5. View All Cargo Jets");
+		System.out.println("5. Load All Cargo Jets");
 		System.out.println("6  Dog Fight!");
 		System.out.println("7. Add Jet To Fleet");
 		System.out.println("8. Remove Jet From Fleet");
@@ -121,8 +121,9 @@ public class JetsApplication {
 					long price = Long.parseLong(jetRecord[3]);
 					JetImpl jet = new JetImpl(model, speed, range, price);
 					jets.add(jet);
-					System.out.println(jet);
 				}
+				System.out.println("Jets in fleet: Loaded");
+				System.out.println(" ");
 				br.close();
 			} catch (FileNotFoundException e) {
 				e.printStackTrace();

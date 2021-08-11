@@ -23,11 +23,6 @@ public abstract class Jet {
 		this.price = price;
 	}
 
-	public void dogFight() {
-		System.out.println(model + " is dogfighting!");
-
-	}
-
 	@Override
 	public String toString() {
 		return "Jet [model=" + model + ", speed=" + speed + ", range=" + range + ", price=" + price + "]";

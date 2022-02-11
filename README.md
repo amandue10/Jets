@@ -23,10 +23,10 @@ For example,
 Model: FTF150 Fighter. (Stores a Fighter Jet)
 Model: CTF130 Cargo. (Stores a Cargo Carrier)
 
-### Tech Used
+### Applied Concepts
 Loops
 BufferReader
-Method's
+Methods
 Class
 Constructors
 exceptions
